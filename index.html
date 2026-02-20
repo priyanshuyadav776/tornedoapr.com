@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APK Downloader</title>
+<link rel="icon" href="icon.jpg" type="image/x-icon">
+<style>
+  /* Body & Background */
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #1a1a1a;
+    color: white;
+    overflow-x: hidden;
+  }
+
+  /* Tornado animation using pseudo-elements */
+  body::before {
+    content: "";
+    position: fixed;
+    top: -150%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 80%);
+    border-radius: 50%;
+    animation: tornado 6s linear infinite;
+    transform: translateX(-50%) rotate(0deg);
+    z-index: -1;
+  }
+
+  @keyframes tornado {
+    0% { transform: translateX(-50%) rotate(0deg) scale(0.5); opacity: 0.2; }
+    50% { transform: translateX(-50%) rotate(180deg) scale(1); opacity: 0.5; }
+    100% { transform: translateX(-50%) rotate(360deg) scale(0.5); opacity: 0.2; }
+  }
+
+  /* Header */
+  header {
+    background: #e21e1e;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px black;
+  }
+
+  /* APK Cards */
+  .apk-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2rem;
+    gap: 1rem;
+  }
+
+  .apk-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid #ff0015;
+    border-radius: 12px;
+    padding: 1rem;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .apk-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 0, 21, 0.6);
+  }
+
+  .apk-card button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid #ff0015;
+    background: transparent;
+    color: #ff0015;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .apk-card button:hover {
+    background: #ff0015;
+    color: white;
+  }
+</style>
+</head>
+<body>
+
+<header>APK Downloader - Tornado APR</header>
+
+<div class="apk-list" id="apkList">
+  <!-- APK cards will be injected here -->
+</div>
+
+<script>
+  // APK file list including Tornado AP
+  const apks = [
+    { name: "CapCut pro", file: "capcut pro.tornedoapr..apk" },
+    { name: "Free Fire Old", file: "free fire old tornedoapr.apk" },
+    
+    { name: "Other App", file: "apk/OtherApp.apk" }
+  ];
+
+  const apkListDiv = document.getElementById('apkList');
+
+  apks.forEach(apk => {
+    const card = document.createElement('div');
+    card.className = 'apk-card';
+    card.innerHTML = `
+      <h3>${apk.name}</h3>
+      <button onclick="downloadAPK('${apk.file}')">Download</button>
+    `;
+    apkListDiv.appendChild(card);
+  });
+
+  function downloadAPK(file) {
+    window.location.href = file; // start download
+  }
+</script>
+
+</body>
+</html>
